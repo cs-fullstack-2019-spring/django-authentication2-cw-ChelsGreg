@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+</head>
+<body>
+
+{% block content %}
+
+<!--TO DISPLAY USERS BLOG ENTRIES-->
+    <h1>POSTS</h1>
+
+    {% for entry in blogPost %}
+        <h3>{{ entry.blog_title }}</h3>
+        <p>{{ entry.blog_entry }}</p>
+        <hr/>
+    {% endfor %}
+
+
+
+
+{% endblock content %}
+
+
+
+<!--FOR LOGIN/LOGOUT SECTION-->
+{% if user.is_authenticated %}
+    {{ user.username }}
+<!--TO DIRECT TO LOGOUT ROUTE-->
+<p><a href="{% url 'logout' %}">PEACE OUT</a></p>
+{% else %}
+<p>PLEASE LOG IN</p>
+<!--TO DIRECT TO LOGIN ROUTE-->
+<a href="{% url 'login' %}">LOGIN</a>
+{% endif %}
+
+</body>
+</html>
